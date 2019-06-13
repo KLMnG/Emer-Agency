@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 
 public class User {
+
+    private int rank;
+    private int id;
+    private String name;
+
+
+
+
     public void addOrder(Order newOrder) {
     }
 

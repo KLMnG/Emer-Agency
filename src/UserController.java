@@ -18,6 +18,7 @@ public class UserController {
 
     public void makeNewOrder(List<User> lu, int uID, String details) {
         User user=findUser(uID);
+
         if(user!=null) {
             Order newOrder = new Order(user, details);
             newOrder.addOrderedUsers(lu);
@@ -26,6 +27,7 @@ public class UserController {
                     lu) {
                 ordered.addOrder(newOrder);
             }
+            user.addOrder(newOrder);
         }
 
     }
