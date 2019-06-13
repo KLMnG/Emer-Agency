@@ -1,16 +1,20 @@
 public class Warning {
 
      public int WarningID;
-     public User complainant;
      public Complaint complaint;
-    public User warned;
+     public User warned;
+
+    public Warning(){
 
 
+    }
 
-    public void create(Complaint complaint, User complainant) {
-        this.complainant = complainant;
+    public void create(Complaint complaint, User complainant, int warningID) {
+//go to db
+        this.warned = complainant;
         this.complaint = complaint;
-        complainant.addWarning(this);
+        this.WarningID = warningID;
+        complainant.sendWarning(this);
 
     }
 

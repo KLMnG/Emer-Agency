@@ -37,12 +37,13 @@ public class User {
 
     }
 
+
     public void addComplaint(Complaint complaint) {
-        if (complaint.getAccucer() == this) {
-            this.complaintsSent.add(complaint);
-        } else {
-            this.complaintsRecieved.add(complaint);
-        }
+        this.complaintsSent.add(complaint);
+    }
+
+    public void addToAccuserList(Complaint complaint) {
+        this.complaintsRecieved.add(complaint);
     }
 
     public void addFeedBack(FeedBack f) {
