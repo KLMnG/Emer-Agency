@@ -10,10 +10,10 @@ public class ComplaintController {
     public ArrayList<Complaint>complaintList;
     public ArrayList<User>userList;
 
-    public ComplaintController(ArrayList<User>userList){
-        for (User u :userList) {
-            userList.add(u);
-        }
+    public ComplaintController(){
+//        for (User u :userList) {
+//            userList.add(u);
+//        }
     }
 
     public void approvedByAdmin(Complaint c, Admin approver, User complainant){
@@ -29,7 +29,7 @@ public class ComplaintController {
 
     }
 
-    public void makeNewComplanit(User complainant, User accuser, String details){
+    public void makeNewComplanit(User complainant, User accuser, String details) throws Exception {
         Complaint c = new Complaint();
         c.setStatus("In progress");
         c.createComplaint(details,complainant, accuser);
