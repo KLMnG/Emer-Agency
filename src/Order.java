@@ -19,5 +19,7 @@ public class Order {
     }
 
 
-
+    public User getOrdering() {
+        return ordering;
+    }
 }

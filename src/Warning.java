@@ -10,7 +10,7 @@ public class Warning {
     public void create(Complaint complaint, User complainant) {
         this.complainant = complainant;
         this.complaint = complaint;
-        complainant.sendWarning(this);
+        complainant.addWarning(this);
 
     }
 

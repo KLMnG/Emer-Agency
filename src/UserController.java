@@ -4,14 +4,12 @@ import java.util.List;
 public class UserController {
 
 
-    private List<Order> orders;
+
     private List<User> users;
 
 
     public UserController() {
         // get all users
-        //get all orders
-
 
     }
 
@@ -22,7 +20,6 @@ public class UserController {
         if(user!=null) {
             Order newOrder = new Order(user, details);
             newOrder.addOrderedUsers(lu);
-            this.orders.add(newOrder);
             for (User ordered :
                     lu) {
                 ordered.addOrder(newOrder);
