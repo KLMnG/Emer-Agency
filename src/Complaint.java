@@ -22,7 +22,7 @@ public class Complaint {
             accuser.addComplaint(this);
             complainant.addToAccuserList(this);
         }
-        else{
+        else {
             throw new Exception("complainant and accuser cant be the same one");
         }
 
