@@ -13,10 +13,10 @@ public class ComplaintController {
 
 
 
-    public ComplaintController(ArrayList<User>userList){
-        for (User u :userList) {
-            userList.add(u);
-        }
+    public ComplaintController(){
+//        for (User u :userList) {
+//            userList.add(u);
+//        }
     }
 
     public void approvedByAdmin(Complaint c, Admin approver, User complainant){
