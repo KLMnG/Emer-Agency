@@ -17,16 +17,22 @@ public class Model{
     private List<User> users;
     private List<Warning> warnings;
     private List<Complaint> complaints;
+    private List<Order> orders;
 
     private Model(){
         updateUsers();
         for (User user : users){
             this.updateUserComplaints(user);
+            this.updateUserOrders(user);
+
         }
         for (User user : users){
             for (Complaint complaint : complaints) {
                 this.updateUserWarnings(user,complaint);
             }
+        }
+        for (Order order : orders) {
+            this.UpdateOrdersUser(order);
         }
     }
 
@@ -126,6 +132,58 @@ public class Model{
             System.out.println(e.getMessage());
         }
     }
+    private void updateUserOrders(User u) {
+        String sql = "SELECT * FROM Orders WHERE OrderingId = ?";
+
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setInt(1,u.getId());
+            ResultSet rs = pstmt.executeQuery();
+
+            List<Order> tmp = new ArrayList<>();
+            while(rs.next()) {
+                int id = rs.getInt("Id");
+                User ordering = getUserById(rs.getInt("OrderingId"));
+                String Details = rs.getString("Details");
+                Order order = new Order(Details,ordering,id);
+                ordering.addOrder(order);
+                tmp.add(order);
+            }
+            this.orders.addAll(tmp);
+
+        } catch (SQLException e) {
+            System.out.println("Failed Retrieve Complaint From DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void UpdateOrdersUser(Order order) {
+        String sql = "SELECT * FROM OrdersRecivers WHERE OrderId = ?";
+
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setInt(1,order.getId());
+            ResultSet rs = pstmt.executeQuery();
+
+            List<User> tmp = new ArrayList<>();
+            while(rs.next()) {
+                int id = rs.getInt("OrderId");
+                User ordered = getUserById(rs.getInt("OrderedId"));
+                ordered.addOrder(order);
+                tmp.add(ordered);
+            }
+            order.addOrderedUsers(tmp);
+
+        } catch (SQLException e) {
+            System.out.println("Failed Retrieve Complaint From DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     public List<User> getDepartmentUsers(Department department){
         List<User> tmp = new ArrayList<>();
@@ -198,6 +256,49 @@ public class Model{
         }
     }
 
+    public void createOrder(Order o) {
+        String sql = "INSERT INTO Order(Id,OrderingId,Details) VALUES(?,?,?);";
+
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setInt(1,o.getId());
+            pstmt.setInt(2,o.getOrdering().getId());
+            pstmt.setString(3,o.getDetails());
+
+            pstmt.executeQuery();
+            this.orders.add(o);
+
+            for (User user : o.getOrderedUsers()) {
+                createOrderUsers(o,user);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Failed Add Order To DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void createOrderUsers(Order o,User ordered) {
+
+        String sql = "INSERT INTO OrdersRecivers(OrderId,OrderedId) VALUES(?,?);";
+
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setInt(1,o.getId());
+            pstmt.setInt(2,ordered.getId());
+
+            pstmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Failed Add OrdersRecivers To DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
     public int getMaxCompliantId() {
         String sql = "SELECT max(Id) as MaxId FROM UsersComplaints";
 
@@ -210,6 +311,24 @@ public class Model{
 
         } catch (SQLException e) {
             System.out.println("Failed To get Max Complaint ID From DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
+        }
+        return Id;
+    }
+
+    public int getMaxOrderId() {
+        String sql = "SELECT max(Id) as MaxId FROM Oders";
+
+        int Id = 0;
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            ResultSet rs = pstmt.executeQuery();
+            Id = (rs.getInt("MaxId"));
+
+        } catch (SQLException e) {
+            System.out.println("Failed To get Max Order ID From DB");
             System.out.println("Error: ");
             System.out.println(e.getMessage());
         }

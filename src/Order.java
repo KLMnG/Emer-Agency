@@ -3,14 +3,24 @@ import java.util.List;
 
 public class Order {
 
+    private static int IdGenerator = 0;
+
     private String details;
     private User ordering;
     private List<User> orderedUsers;
+    private int Id;
 
 
-    public Order(User u,String s){
+    public Order(String details, User ordering, int id) {
+        this.details = details;
+        this.ordering = ordering;
+        this.Id = id;
+    }
+
+    public Order(User u, String s){
         this.ordering=u;
         this.details=s;
+        this.Id = ++IdGenerator;
         orderedUsers=new ArrayList<>();
     }
 
@@ -21,5 +31,21 @@ public class Order {
 
     public User getOrdering() {
         return ordering;
+    }
+
+    public static int getIdGenerator() {
+        return IdGenerator;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public List<User> getOrderedUsers() {
+        return orderedUsers;
+    }
+
+    public int getId() {
+        return Id;
     }
 }
