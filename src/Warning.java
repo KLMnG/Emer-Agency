@@ -10,13 +10,11 @@ public class Warning {
     }
 
     public void create(Complaint complaint, User complainant, int warningID) {
-
+//go to db
         this.warned = complainant;
         this.complaint = complaint;
         this.WarningID = warningID;
         complainant.sendWarning(this);
-
-
 
     }
 

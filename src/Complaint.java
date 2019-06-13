@@ -38,4 +38,8 @@ public class Complaint {
     public void setStatus(String approve) {
         this.status = approve;
     }
+
+    public User getAccucer() {
+        return this.accuser;
+    }
 }

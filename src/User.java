@@ -1,10 +1,22 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
     private int rank;
     private int id;
     private String name;
+    private List<Order> ordersRecieved;
+    private List<Order> ordersDelivered;
+    private Department department;
+    private List<Warning> warnings;
+    private List<Complaint> complaintsRecieved;
+    private List<Complaint> complaintsSent;
+    private UserController userController;
+    private ComplaintController complaintController;
+    public ArrayList<Warning>warningList;
+    public ArrayList<Complaint>complaintsList;
+    public ArrayList<Complaint>accusersList;
 
 
     public User(int rank, int id, String name) {
@@ -14,32 +26,43 @@ public class User {
     }
 
     public void addOrder(Order newOrder) {
+        if (newOrder.getOrdering() == this) {
+            this.ordersDelivered.add(newOrder);
+        } else {
+            this.ordersRecieved.add(newOrder);
+        }
     }
 
     public Department getDepartment() {
-        return null;
+        return this.department;
     }
 
     public int getID() {
-        return 0;
+        return this.id;
     }
 
-    public ArrayList<Warning>warningList;
-    public ArrayList<Complaint>complaintsList;
-    public ArrayList<Complaint>accusersList;
-    ComplaintController complaintController;
-
-
-    public void sendWarning(Warning warning) {
-        warningList.add(warning);
+    public void addWarning(Warning warning) {
+        this.warnings.add(warning);
 
     }
 
     public void addComplaint(Complaint complaint) {
-        complaintsList.add(complaint);
+        this.complaintsSent.add(complaint);
     }
 
     public void addToAccuserList(Complaint complaint) {
-        accusersList.add(complaint);
+        this.complaintsRecieved.add(complaint);
     }
+
+    public void addFeedBack(FeedBack f) {
+    }
+
+    public void sendWarning(Warning w) {
+        addWarning(w);
+    }
+
+    public void addAnswerToFeedBack(String ans,FeedBack f){
+
+    }
+
 }
