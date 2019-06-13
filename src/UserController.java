@@ -31,7 +31,7 @@ public class UserController {
     private User findUser(int uID) {
         for (User user :
                 this.users) {
-            if (user.getID() == uID)
+            if (user.getId() == uID)
                 return user;
         }
         return null;

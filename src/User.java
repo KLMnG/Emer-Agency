@@ -4,7 +4,7 @@ import java.util.List;
 public class User {
 
     private int rank;
-    private int id;
+    private int Id;
     private String name;
     private List<Order> ordersRecieved;
     private List<Order> ordersDelivered;
@@ -21,7 +21,7 @@ public class User {
 
     public User(int rank, int id, String name) {
         this.rank = rank;
-        this.id = id;
+        this.Id = id;
         this.name = name;
     }
 
@@ -37,13 +37,12 @@ public class User {
         return this.department;
     }
 
-    public int getID() {
-        return this.id;
+    public int getId() {
+        return this.Id;
     }
 
     public void addWarning(Warning warning) {
         this.warnings.add(warning);
-
     }
 
     public void addComplaint(Complaint complaint) {

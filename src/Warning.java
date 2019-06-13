@@ -1,27 +1,26 @@
 public class Warning {
 
-     public int WarningID;
-     public Complaint complaint;
-     public User warned;
+     private Complaint complaint;
+     private User warned;
 
-    public Warning(){
-
-
+    public Warning(Complaint complaint, User warned) {
+        this.complaint = complaint;
+        this.warned = warned;
     }
 
-    public void create(Complaint complaint, User complainant, int warningID) {
-//go to db
+    public void create(Complaint complaint, User complainant) {
+
+        //go to db
         this.warned = complainant;
         this.complaint = complaint;
-        this.WarningID = warningID;
         complainant.sendWarning(this);
-
     }
 
+    public Complaint getComplaint() {
+        return complaint;
+    }
 
-
-
-
-
-
+    public User getWarned() {
+        return warned;
+    }
 }

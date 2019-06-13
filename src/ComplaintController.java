@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 
 public class ComplaintController {
+
     public String status;
     public String details;
     public User complainant;
     public Warning warning;
     public User accuser;
     public Admin approver;
-    public ArrayList<Complaint>complaintList;
-    public ArrayList<User>userList;
+    public ArrayList<Complaint> complaintList;
+    public ArrayList<User> userList;
+
+
 
     public ComplaintController(ArrayList<User>userList){
         for (User u :userList) {
@@ -23,16 +26,15 @@ public class ComplaintController {
 
 
     public void manageAComplaint(Complaint c, User complainant){
-        c.setStatus("Aprrove");
+        c.setStatus("APPROVE");
         c.createAndSendWarning(complainant);
         complaintList.add(c);
-
     }
 
     public void makeNewComplaint(User complainant, User accuser, String details) throws Exception {
-        Complaint c = new Complaint();
-        c.setStatus("In progress");
-        c.createComplaint(details,complainant, accuser);
+        Complaint c = new Complaint(complainant,accuser,details);
+        c.setStatus("In Progress");
+        Model.getInstance().createComplaint(c);
        // ArrayList <Admin>approvers = getAdmins();
         //for (Admin a:approvers) {
          //   sendToAdmin(c,a);
