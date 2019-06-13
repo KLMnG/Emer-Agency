@@ -14,7 +14,16 @@ public class User {
     private List<Complaint> complaintsSent;
     private UserController userController;
     private ComplaintController complaintController;
+    public ArrayList<Warning>warningList;
+    public ArrayList<Complaint>complaintsList;
+    public ArrayList<Complaint>accusersList;
 
+
+    public User(int rank, int id, String name) {
+        this.rank = rank;
+        this.id = id;
+        this.name = name;
+    }
 
     public void addOrder(Order newOrder) {
         if (newOrder.getOrdering() == this) {
@@ -36,7 +45,6 @@ public class User {
         this.warnings.add(warning);
 
     }
-
 
     public void addComplaint(Complaint complaint) {
         this.complaintsSent.add(complaint);
