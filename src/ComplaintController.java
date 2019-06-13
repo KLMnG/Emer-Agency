@@ -29,7 +29,7 @@ public class ComplaintController {
 
     }
 
-    public void makeNewComplanit(User complainant, User accuser, String details){
+    public void makeNewComplaint(User complainant, User accuser, String details){
         Complaint c = new Complaint();
         c.setStatus("In progress");
         c.createComplaint(details,complainant, accuser);

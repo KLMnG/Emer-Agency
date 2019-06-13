@@ -7,7 +7,11 @@ public class User {
     private String name;
 
 
-
+    public User(int rank, int id, String name) {
+        this.rank = rank;
+        this.id = id;
+        this.name = name;
+    }
 
     public void addOrder(Order newOrder) {
     }
@@ -27,10 +31,9 @@ public class User {
 
 
     public void sendWarning(Warning warning) {
-    warningList.add(warning);
+        warningList.add(warning);
 
     }
-
 
     public void addComplaint(Complaint complaint) {
         complaintsList.add(complaint);
