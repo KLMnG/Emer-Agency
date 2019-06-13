@@ -16,6 +16,11 @@ public class ComplaintController {
         }
     }
 
+    public void approvedByAdmin(Complaint c, Admin approver, User complainant){
+        approver.approve(c);
+        manageAComplaint(c,complainant);
+    }
+
 
     public void manageAComplaint(Complaint c, User complainant){
         c.setStatus("Aprrove");
@@ -28,7 +33,15 @@ public class ComplaintController {
         Complaint c = new Complaint();
         c.setStatus("In progress");
         c.createComplaint(details,complainant, accuser);
+       // ArrayList <Admin>approvers = getAdmins();
+        //for (Admin a:approvers) {
+         //   sendToAdmin(c,a);
+        }
 
+
+    public void sendToAdmin(Complaint c, Admin approver){
+        this.approver = approver;
+        approver.addToComplaintsList(c);
 
     }
 
