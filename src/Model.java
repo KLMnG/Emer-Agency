@@ -20,6 +20,11 @@ public class Model{
     private List<Order> orders;
 
     private Model(){
+        this.users = new ArrayList<>();
+        this.warnings = new ArrayList<>();
+        this.complaints = new ArrayList<>();
+        this.orders = new ArrayList<>();
+
         updateUsers();
         for (User user : users){
             this.updateUserComplaints(user);
@@ -37,6 +42,7 @@ public class Model{
     }
 
     public List<User> getUsers() {
+        updateUsers();
         return users;
     }
 

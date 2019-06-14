@@ -19,15 +19,16 @@
             <Label id="lbUserName" fx:id="lbUserName" layoutX="238.0" layoutY="34.0" prefHeight="17.0" prefWidth="58.0" text="Label" visible="false" />
             <TableView fx:id="tvUsers" layoutX="5.0" layoutY="280.0" prefHeight="124.0" prefWidth="456.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="colUserName" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="colUserDepartment" prefWidth="75.0" text="Department" />
+                  <TableColumn fx:id="colUserRank" prefWidth="75.0" text="Rank" />
               </columns>
             </TableView>
             <TextArea fx:id="taDetails" layoutX="209.0" layoutY="191.0" prefHeight="53.0" prefWidth="232.0" />
-            <TableView fx:id="tvUsersName" layoutX="461.0" layoutY="10.0" prefHeight="391.0" prefWidth="141.0">
+            <TableView fx:id="tvUsersNames" layoutX="461.0" layoutY="10.0" prefHeight="391.0" prefWidth="141.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
          </children>

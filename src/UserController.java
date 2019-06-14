@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserController {
@@ -9,7 +10,7 @@ public class UserController {
 
 
     public UserController() {
-        // get all users
+        users = Model.getInstance().getUsers();
 
     }
 
@@ -29,8 +30,7 @@ public class UserController {
     }
 
     private User findUser(int uID) {
-        for (User user :
-                this.users) {
+        for (User user : this.users) {
             if (user.getId() == uID)
                 return user;
         }
@@ -47,6 +47,11 @@ public class UserController {
         return members;
     }
 
+
+    public List<User> getOrderRelevantUsers() {
+        List tmp = new ArrayList(users);
+        return tmp;
+    }
 
 
 }

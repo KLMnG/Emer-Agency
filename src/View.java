@@ -6,8 +6,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.awt.event.ActionEvent;
 import java.util.EventListener;
+import java.util.List;
 
-public class View implements IView{
+public class View{
 
     private ViewController viewController;
 
@@ -36,10 +37,10 @@ public class View implements IView{
     }
 
     public void initialize() {
-    /*    this.users = FXCollections.observableArrayList();
+        this.users = FXCollections.observableArrayList();
         // col_from.setEditable(false);
         tvUsersNames.setRowFactory(param -> {
-            TableRow<User> row = new TableRow<>();
+            TableRow<User> row = new TableRow<User>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     User rowData = row.getItem();
@@ -54,14 +55,14 @@ public class View implements IView{
         );
 
         colUserDepartment.setCellValueFactory(
-                new PropertyValueFactory<User, String>("Dep.")
+                new PropertyValueFactory<User, String>("DepartmentName")
         );
 
         colUserRank.setCellValueFactory(
                 new PropertyValueFactory<User, String>("Rank")
         );
 
-        this.tvUsers.setItems(users);*/
+        this.tvUsers.setItems(users);
     }
 
     public void setLbUserName(String userName) {
@@ -74,6 +75,15 @@ public class View implements IView{
 
 
     public void giveOrder(javafx.event.ActionEvent actionEvent) {
+        viewController.giveOrder();
+    }
+
+    public void setViewController(ViewController viewController) {
+        this.viewController = viewController;
+    }
+
+    public void setRelevantUsersOrderTable(List<User> users) {
+        this.users.addAll(users);
     }
 }
 

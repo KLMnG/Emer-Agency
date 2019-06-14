@@ -1,3 +1,5 @@
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,4 +66,15 @@ public class User {
 
     }
 
+    public String getDepartmentName() {
+        return this.department.getName();
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

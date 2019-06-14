@@ -5,10 +5,12 @@ import java.sql.SQLException;
 public class DBConnection {
     private final String ConnectionString = "jdbc:sqlite:resources/db/EmerAgencyDB.db";
 
-
-    private static DBConnection ourInstance = new DBConnection();
+    private static DBConnection ourInstance;
 
     public static DBConnection getInstance() {
+        if (ourInstance == null)
+            ourInstance = new DBConnection();
+
         return ourInstance;
     }
 

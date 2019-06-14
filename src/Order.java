@@ -33,10 +33,6 @@ public class Order {
         return ordering;
     }
 
-    public static int getIdGenerator() {
-        return IdGenerator;
-    }
-
     public String getDetails() {
         return details;
     }

@@ -4,6 +4,9 @@ public class Admin extends User {
 
     private ArrayList<Complaint>ComplaintsToReview;
 
+    public Admin(int rank, int id, String name) {
+        super(rank, id, name);
+    }
 
 
     public void addToComplaintsList(Complaint c) {
