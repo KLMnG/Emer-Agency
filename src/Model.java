@@ -7,9 +7,12 @@ import java.util.List;
 
 public class Model{
 
-    private static Model Instance = new Model();
+    private static Model Instance;
 
     public static Model getInstance() {
+        if (Instance == null)
+            Instance = new Model();
+
         return Instance;
     }
 
@@ -18,14 +21,18 @@ public class Model{
     private List<Warning> warnings;
     private List<Complaint> complaints;
     private List<Order> orders;
+    private List<Department> departments;
 
     private Model(){
         this.users = new ArrayList<>();
         this.warnings = new ArrayList<>();
         this.complaints = new ArrayList<>();
         this.orders = new ArrayList<>();
+        this.departments = new ArrayList<>();
 
+        updateDepartments();
         updateUsers();
+
         for (User user : users){
             this.updateUserComplaints(user);
             this.updateUserOrders(user);
@@ -46,6 +53,29 @@ public class Model{
         return users;
     }
 
+    private User getUserById(int uId){
+        for (User user : users) {
+            if (user.getId() == uId)
+                return user;
+        }
+        return null;
+    }
+
+    private Department getDepartmentById(int dId){
+        for (Department department : departments) {
+            if (department.getId() == dId)
+                return department;
+        }
+        return null;
+    }
+    private Complaint getComplaintById(int cId){
+        for (Complaint compliant : complaints) {
+            if (compliant.getId() == cId)
+                return compliant;
+        }
+        return null;
+    }
+
     public void updateUsers(){
         String sql = "SELECT * FROM Users";
 
@@ -55,7 +85,16 @@ public class Model{
             ResultSet rs = pstmt.executeQuery();
             List<User> tmp = new ArrayList<>();
             while(rs.next()) {
-                User user = new User(rs.getInt("Id"),rs.getInt("Rank"),rs.getString("Name"));
+                int departmentId = rs.getInt("Department");
+                boolean isAdmin = rs.getBoolean("IsAdmin");
+                User user = null;
+                if (!isAdmin)
+                    user = new User(rs.getInt("Id"),rs.getInt("Rank"),rs.getString("Name"));
+                else
+                    user = new Admin(rs.getInt("Id"),rs.getInt("Rank"),rs.getString("Name"));
+
+                Department department = getDepartmentById(departmentId);
+                user.assignDepartment(department);
                 tmp.add(user);
             }
             users = tmp;
@@ -67,21 +106,27 @@ public class Model{
         }
     }
 
-    private User getUserById(int uId){
-        for (User user : users) {
-            if (user.getId() == uId)
-                return user;
+    private void updateDepartments() {
+        String sql = "SELECT * FROM Departments";
+
+        try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            ResultSet rs = pstmt.executeQuery();
+            List<Department> tmp = new ArrayList<>();
+            while(rs.next()) {
+                Department department = new Department(rs.getInt("Id"),rs.getString("Name"));
+                tmp.add(department);
+            }
+            departments = tmp;
+
+        } catch (SQLException e) {
+            System.out.println("Failed Retrieve Users From DB");
+            System.out.println("Error: ");
+            System.out.println(e.getMessage());
         }
-        return null;
     }
 
-    private Complaint getComplaintById(int cId){
-        for (Complaint compliant : complaints) {
-            if (compliant.getId() == cId)
-                return compliant;
-        }
-        return null;
-    }
 
     public void updateUserComplaints(User u){
         String sql = "SELECT * FROM UsersComplaints WHERE ComplainantId = ?";

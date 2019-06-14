@@ -59,7 +59,7 @@ public class View{
         );
 
         colUserRank.setCellValueFactory(
-                new PropertyValueFactory<User, String>("Rank")
+                new PropertyValueFactory<User, Integer>("Rank")
         );
 
         this.tvUsers.setItems(users);

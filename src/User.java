@@ -1,5 +1,3 @@
-import javafx.beans.property.SimpleStringProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,17 @@ public class User {
     public ArrayList<Complaint>accusersList;
 
 
-    public User(int rank, int id, String name) {
+    public User(int id,int rank, String name) {
         this.rank = rank;
         this.Id = id;
         this.name = name;
+    }
+
+    public void assignDepartment(Department d){
+        if (department != d && department == null){
+            department = d;
+            d.assignUser(this);
+        }
     }
 
     public void addOrder(Order newOrder) {

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
@@ -6,10 +7,10 @@ public class Department {
     protected String Name;
     private List<User> members;
 
-    public Department(int Id){
+    public Department(int Id,String name){
         this.Id = Id;
-        updateMembers();
-
+        this.Name = name;
+        this.members = new ArrayList<>();
     }
 
     public int getId() {
@@ -22,6 +23,13 @@ public class Department {
 
     public List<User> getMembers() {
         return members;
+    }
+
+    public void assignUser(User u){
+        if (!members.contains(u)) {
+            members.add(u);
+            u.assignDepartment(this);
+        }
     }
 
     private void updateMembers() {
