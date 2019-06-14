@@ -8,27 +8,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View">
    <children>
-      <Pane layoutX="-3.0" layoutY="-4.0" prefHeight="409.0" prefWidth="606.0">
+      <Pane fx:id="btnClearText" layoutX="12.0" layoutY="9.0" prefHeight="455.0" prefWidth="712.0">
          <children>
-            <Button id="btnConnect" fx:id="btnConnect" layoutX="88.0" layoutY="154.0" mnemonicParsing="false" onAction="#connectUser" text="connect" />
-            <Button id="btnGiveOrder" fx:id="btnGiveOrder" layoutX="81.0" layoutY="192.0" mnemonicParsing="false" onAction="#giveOrder" text="Give Order" />
-            <Button id="btnEnterComplaint" fx:id="btnEnterComplaint" layoutX="66.0" layoutY="235.0" mnemonicParsing="false" text="Enter Complaint" />
+            <Button id="btnConnect" fx:id="btnConnect" layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectUser" text="connect" />
+            <Button id="btnGiveOrder" fx:id="btnGiveOrder" layoutX="79.0" layoutY="182.0" mnemonicParsing="false" onAction="#giveOrder" text="Give Order" />
+            <Button id="btnEnterComplaint" fx:id="btnEnterComplaint" layoutX="65.0" layoutY="216.0" mnemonicParsing="false" text="Enter Complaint" />
             <Label id="lbHello" layoutX="192.0" layoutY="34.0" prefHeight="17.0" prefWidth="34.0" text="Hello!" />
-            <Label id="lbUserName" fx:id="lbUserName" layoutX="238.0" layoutY="34.0" prefHeight="17.0" prefWidth="58.0" text="Label" visible="false" />
-            <TableView fx:id="tvUsers" layoutX="5.0" layoutY="280.0" prefHeight="124.0" prefWidth="456.0">
+            <Label id="lbUserName" fx:id="lbUserName" layoutX="237.0" layoutY="29.0" prefHeight="25.0" prefWidth="122.0" />
+            <TableView fx:id="tvUsersToAction" layoutX="10.0" layoutY="317.0" prefHeight="124.0" prefWidth="456.0">
               <columns>
                   <TableColumn fx:id="colUserName" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="colUserDepartment" prefWidth="75.0" text="Department" />
                   <TableColumn fx:id="colUserRank" prefWidth="75.0" text="Rank" />
               </columns>
             </TableView>
-            <TextArea fx:id="taDetails" layoutX="209.0" layoutY="191.0" prefHeight="53.0" prefWidth="232.0" />
-            <TableView fx:id="tvUsersNames" layoutX="461.0" layoutY="10.0" prefHeight="391.0" prefWidth="141.0">
+            <TextArea fx:id="taDetails" layoutX="219.0" layoutY="188.0" prefHeight="53.0" prefWidth="232.0" />
+            <TableView fx:id="tvUsersNames" layoutX="466.0" layoutY="38.0" prefHeight="406.0" prefWidth="232.0">
               <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="unColUserName" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="unColUserDepartment" prefWidth="75.0" text="Department" />
+                  <TableColumn fx:id="unColUserRank" prefWidth="75.0" text="Rank" />
               </columns>
             </TableView>
          </children>
