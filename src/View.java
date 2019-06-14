@@ -1,6 +1,7 @@
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -50,6 +51,19 @@ public class View {
             return row;
         });
 
+        tvUsersToAction.setRowFactory(param -> {
+            TableRow<User> row = new TableRow<User>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    User rowData = row.getItem();
+                    this.usersToAction.remove(rowData);
+                    //  this.usersToAction.add(rowData);
+                }
+            });
+            return row;
+        });
+
+
         colUserName.setCellValueFactory(
                 new PropertyValueFactory<User, String>("Name")
         );
@@ -97,9 +111,7 @@ public class View {
         try {
             this.viewController.connectUser(((User) this.tvUsersNames.getSelectionModel().getSelectedItem()));
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("PLEASE CHOOSE A USER");
-            alert.show();
+            showError("PLEASE CHOOSE A USER");
         }
 
     }
@@ -109,7 +121,7 @@ public class View {
     }
 
     public void giveOrder(javafx.event.ActionEvent actionEvent) {
-        viewController.giveOrder();
+        this.viewController.giveOrder();
     }
 
 
@@ -134,6 +146,16 @@ public class View {
 
     public String getTaDetailsText() {
         return this.taDetails.getText();
+    }
+
+    public void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    public void enterComplaint(ActionEvent actionEvent) {
+        this.viewController.enterComplaint();
     }
 }
 

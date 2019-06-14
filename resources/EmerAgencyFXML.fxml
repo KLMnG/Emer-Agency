@@ -14,7 +14,7 @@
          <children>
             <Button id="btnConnect" fx:id="btnConnect" layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectUser" text="connect" />
             <Button id="btnGiveOrder" fx:id="btnGiveOrder" layoutX="79.0" layoutY="182.0" mnemonicParsing="false" onAction="#giveOrder" text="Give Order" />
-            <Button id="btnEnterComplaint" fx:id="btnEnterComplaint" layoutX="65.0" layoutY="216.0" mnemonicParsing="false" text="Enter Complaint" />
+            <Button id="btnEnterComplaint" fx:id="btnEnterComplaint" layoutX="65.0" layoutY="216.0" mnemonicParsing="false" onAction="#enterComplaint" text="Enter Complaint" />
             <Label id="lbHello" layoutX="192.0" layoutY="34.0" prefHeight="17.0" prefWidth="34.0" text="Hello!" />
             <Label id="lbUserName" fx:id="lbUserName" layoutX="237.0" layoutY="29.0" prefHeight="25.0" prefWidth="122.0" />
             <TableView fx:id="tvUsersToAction" layoutX="10.0" layoutY="317.0" prefHeight="124.0" prefWidth="456.0">
