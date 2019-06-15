@@ -17,14 +17,22 @@ public class ComplaintController {
 //        }
     }
 
-    public void approvedByAdmin(Complaint c, Admin approver, User complainant){
-        approver.removeFromList(c);
-        manageAComplaint(c,complainant,"APPROVED");
+    public void approvedByAdmin(Complaint c, Admin approver, User complainant) {
+        try {
+            approver.removeFromList(c);
+            manageAComplaint(c, complainant, "APPROVED");
+        }catch (Exception e){
+
+        }
     }
 
     public void deniedByAdmin(Complaint c, Admin approver, User complainant){
+       try{
         approver.removeFromList(c);
         manageAComplaint(c,complainant,"DENIED");
+    }catch (Exception e){
+
+    }
     }
 
 
