@@ -70,11 +70,17 @@ public class ViewController {
     }
 
     public void setView(String name){
-        if (name.equals("Main"))
-            this.primaryStage.setScene(mainScene);
-        else if (name.equals("myProfile")) {
-            this.primaryStage.setScene(myProfileScene);
-            this.myProfileView.updateUserDetails();
+        try {
+
+            if (name.equals("Main"))
+                this.primaryStage.setScene(mainScene);
+            else if (name.equals("myProfile")) {
+                this.myProfileView.updateUserDetails();
+                this.primaryStage.setScene(myProfileScene);
+            }
+        }
+        catch (Exception e){
+            this.view.showError("PLEASE CHOOSE A USER");
         }
     }
 }

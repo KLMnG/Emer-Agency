@@ -35,9 +35,43 @@ public class View {
 
     private ObservableList<User> users;
     private ObservableList<User> usersToAction;
-    public void initialize(){
 
+    public void initialize() {
+
+        initializeUserNames();
+        initializeUserToAction();
+    }
+
+    private void initializeUserNames() {
         this.users = FXCollections.observableArrayList();
+        tvUsersToAction.setRowFactory(param -> {
+            TableRow<User> row = new TableRow<User>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    User rowData = row.getItem();
+                    this.usersToAction.remove(rowData);
+                    //  this.usersToAction.add(rowData);
+                }
+            });
+            return row;
+        });
+
+        unColUserName.setCellValueFactory(
+                new PropertyValueFactory<User, String>("Name")
+        );
+
+        unColUserDepartment.setCellValueFactory(
+                new PropertyValueFactory<User, String>("DepartmentName")
+        );
+
+        unColUserRank.setCellValueFactory(
+                new PropertyValueFactory<User, Integer>("Rank")
+        );
+
+        this.tvUsersNames.setItems(users);
+    }
+
+    private void initializeUserToAction() {
         this.usersToAction = FXCollections.observableArrayList();
         // col_from.setEditable(false);
         tvUsersNames.setRowFactory(param -> {
@@ -51,19 +85,6 @@ public class View {
             });
             return row;
         });
-
-        tvUsersToAction.setRowFactory(param -> {
-            TableRow<User> row = new TableRow<User>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    User rowData = row.getItem();
-                    this.usersToAction.remove(rowData);
-                    //  this.usersToAction.add(rowData);
-                }
-            });
-            return row;
-        });
-
         colUserName.setCellValueFactory(
                 new PropertyValueFactory<User, String>("Name")
         );
@@ -76,23 +97,10 @@ public class View {
                 new PropertyValueFactory<User, Integer>("Rank")
         );
 
-        this.tvUsersNames.setItems(users);
 
-
-        unColUserName.setCellValueFactory(
-                new PropertyValueFactory<User, String>("Name")
-        );
-
-        unColUserDepartment.setCellValueFactory(
-                new PropertyValueFactory<User, String>("DepartmentName")
-        );
-
-        unColUserRank.setCellValueFactory(
-                new PropertyValueFactory<User, Integer>("Rank")
-        );
         this.tvUsersToAction.setItems(usersToAction);
-
     }
+
 
     public ObservableList<User> getUsersToAction() {
         return this.usersToAction;
@@ -158,7 +166,7 @@ public class View {
         this.viewController.enterComplaint();
     }
 
-    public void enterMyProfile(){
+    public void enterMyProfile() {
         this.viewController.setView("myProfile");
     }
 }
