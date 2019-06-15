@@ -82,13 +82,14 @@ public class ViewController {
                 this.myProfileView.updateUserDetails();
                 this.primaryStage.setScene(myProfileScene);
             }
+            else if (name.equals("CompliantManager")) {
+                this.primaryStage.setScene(complaintManagerScene);
+                this.complaintManagerView.updateComplaintsDetails();
+            }
         }
         catch (Exception e){
             this.view.showError("PLEASE CHOOSE A USER");
         }
-        else if (name.equals("CompliantManager")) {
-            this.primaryStage.setScene(complaintManagerScene);
-            this.complaintManagerView.updateComplaintsDetails();
-        }
+
     }
 }

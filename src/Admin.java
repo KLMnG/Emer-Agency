@@ -6,6 +6,7 @@ public class Admin extends User {
 
     public Admin(int rank, int id, String name) {
         super(rank, id, name);
+        this.ComplaintsToReview=new ArrayList<>();
     }
 
     public void addToComplaintsList(Complaint c) {

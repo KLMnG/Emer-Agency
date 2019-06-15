@@ -44,8 +44,8 @@ public class View {
 
         initializeUserNames();
         initializeUserToAction();
-        this.isAdminProperty = new SimpleBooleanProperty(false);
 
+        this.isAdminProperty = new SimpleBooleanProperty(false);
         myProfileMenu.visibleProperty().bind(isAdminProperty.not());
         complaintManagerMenu.visibleProperty().bind(isAdminProperty);
 
