@@ -253,7 +253,7 @@ public class Model {
             pstmt.setString(4, c.getDetails());
             pstmt.setString(5, c.getStatus());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
             this.complaints.add(c);
         } catch (SQLException e) {
@@ -290,7 +290,7 @@ public class Model {
             pstmt.setInt(1, w.getWarned().getId());
             pstmt.setInt(2, w.getComplaint().getId());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
             this.warnings.add(w);
 
@@ -310,7 +310,7 @@ public class Model {
             pstmt.setInt(2, o.getOrdering().getId());
             pstmt.setString(3, o.getDetails());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             this.orders.add(o);
 
             for (User user : o.getOrderedUsers()) {
@@ -334,7 +334,7 @@ public class Model {
             pstmt.setInt(1, o.getId());
             pstmt.setInt(2, ordered.getId());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Failed Add OrdersRecivers To DB");
             System.out.println("Error: ");
@@ -377,12 +377,12 @@ public class Model {
     }
 
 
-    public void createAndUpdateOrder(Order newOrder) {
-        createOrder(newOrder);
-        updateUserOrders(newOrder.getOrdering());
-        for (User user :
-                newOrder.getOrderedUsers()){
-         //updateTheOrderedUsers
-        }
-    }
+//    public void createAndUpdateOrder(Order newOrder) {
+//        createOrder(newOrder);
+//        updateUserOrders(newOrder.getOrdering());
+//        for (User user :
+//                newOrder.getOrderedUsers()){
+//         //updateTheOrderedUsers
+//        }
+//    }
 }

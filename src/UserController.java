@@ -19,11 +19,11 @@ public class UserController {
         if (user != null && !lu.contains(user)) {
             Order newOrder = new Order(user, details);
             newOrder.addOrderedUsers(lu);
-            Model.getInstance().createAndUpdateOrder(newOrder);
-//            for (User ordered : lu) {
-//                ordered.addOrder(newOrder);
-//            }
-//            user.addOrder(newOrder);
+            for (User ordered : lu) {
+                ordered.addOrder(newOrder);
+            }
+            Model.getInstance().createOrder(newOrder);
+            user.addOrder(newOrder);
 
 
         }

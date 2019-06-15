@@ -38,7 +38,7 @@ public class User {
     }
 
     public void addOrder(Order newOrder) {
-        if (newOrder.getOrdering() == this) {
+        if (newOrder.getOrdering().getId()== this.Id) {
             this.ordersDelivered.add(newOrder);
         } else {
             this.ordersRecieved.add(newOrder);

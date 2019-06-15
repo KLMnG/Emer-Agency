@@ -15,6 +15,7 @@ public class Order {
         this.details = details;
         this.ordering = ordering;
         this.Id = id;
+        orderedUsers=new ArrayList<>();
     }
 
     public Order(User u, String s){
@@ -22,6 +23,7 @@ public class Order {
         this.details=s;
         this.Id = ++IdGenerator;
         orderedUsers=new ArrayList<>();
+
     }
 
     public void addOrderedUsers(List<User> users){
