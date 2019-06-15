@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View">
    <children>
       <Pane fx:id="btnClearText" layoutX="0.0" layoutY="0.0" prefHeight="480.0" prefWidth="740.0">
          <children>
@@ -19,7 +19,8 @@
                  <menus>
                      <Menu mnemonicParsing="false" text="Home">
                          <items>
-                             <MenuItem mnemonicParsing="false" text="MyProfile" onAction="#enterMyProfile"/>
+                             <MenuItem fx:id="myProfileMenu" mnemonicParsing="false" onAction="#enterMyProfile" text="MyProfile" />
+                             <MenuItem fx:id="complaintManagerMenu" mnemonicParsing="false" onAction="#enterComplaintManager" text="Complaint Manager" />
                          </items>
                      </Menu>
                  </menus>

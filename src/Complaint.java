@@ -82,4 +82,12 @@ public class Complaint {
     public Admin getApprover() {
         return approver;
     }
+
+    public String getAccuserName(){
+        return this.accuser.getName();
+    }
+
+    public String getComplainantName(){
+        return this.complainant.getName();
+    }
 }

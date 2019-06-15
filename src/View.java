@@ -1,4 +1,5 @@
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +13,10 @@ import java.util.List;
 
 public class View {
 
+    public MenuItem myProfileMenu;
+    public MenuItem complaintManagerMenu;
     private ViewController viewController;
+    private SimpleBooleanProperty isAdminProperty;
 
     public Button btnConnect;
     public Button btnGiveOrder;
@@ -37,6 +41,7 @@ public class View {
     private ObservableList<User> usersToAction;
     public void initialize(){
 
+        this.isAdminProperty = new SimpleBooleanProperty(false);
         this.users = FXCollections.observableArrayList();
         this.usersToAction = FXCollections.observableArrayList();
         // col_from.setEditable(false);
@@ -92,6 +97,9 @@ public class View {
         );
         this.tvUsersToAction.setItems(usersToAction);
 
+        myProfileMenu.visibleProperty().bind(isAdminProperty.not());
+        complaintManagerMenu.visibleProperty().bind(isAdminProperty);
+
     }
 
     public ObservableList<User> getUsersToAction() {
@@ -110,6 +118,7 @@ public class View {
     public void connectUser(javafx.event.ActionEvent actionEvent) {
         try {
             this.viewController.connectUser(((User) this.tvUsersNames.getSelectionModel().getSelectedItem()));
+            isAdminProperty.setValue(this.viewController.getCurrentUser() instanceof Admin);
         } catch (Exception e) {
             showError("PLEASE CHOOSE A USER");
         }
@@ -160,6 +169,10 @@ public class View {
 
     public void enterMyProfile(){
         this.viewController.setView("myProfile");
+    }
+
+    public void enterComplaintManager(ActionEvent actionEvent) {
+        this.viewController.setView("CompliantManager");
     }
 }
 
