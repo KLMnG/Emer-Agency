@@ -42,9 +42,9 @@ public class Model {
         for (User user : users) {
             for (Complaint complaint : complaints) {
                 this.updateUserWarnings(user, complaint);
-                if (user instanceof Admin && complaint.getComplainant().getDepartment().getId() == user.getDepartment().getId()) {
+                if (user instanceof Admin && complaint.getComplainant().getDepartment().getId() == user.getDepartment().getId() && complaint.getStatus().equals("PENDING")) {
                     Admin admin = (Admin)user;
-                    admin.addToComplaintsList(complaint);;
+                    admin.addToComplaintsList(complaint);
                 }
             }
         }
@@ -256,7 +256,7 @@ public class Model {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, c.getId());
             pstmt.setInt(2, c.getAccuser().getId());
-            pstmt.setInt(3, c.getId());
+            pstmt.setInt(3, c.getComplainant().getId());
             pstmt.setString(4, c.getDetails());
             pstmt.setString(5, c.getStatus());
 
@@ -279,9 +279,8 @@ public class Model {
             pstmt.setString(1, status);
             pstmt.setInt(2, c.getId());
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
-            c.setStatus(status);
         } catch (SQLException e) {
             System.out.println("Failed to update Status in DB");
             System.out.println("Error: ");
@@ -290,7 +289,7 @@ public class Model {
     }
 
     public void createWarning(Warning w) {
-        String sql = "INSERT INTO UsersComplaints(UserId,ComplaintId) VALUES(?,?);";
+        String sql = "INSERT INTO UsersWarnings(UserId,ComplaintId) VALUES(?,?);";
 
         try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -11,19 +11,44 @@ public class MyProfileView {
     private ViewController viewController;
 
     public void initialize(){
+
+
         myWarnings.setCellFactory(param -> {
-            ListCell<Warning> cell = new ListCell<Warning>();
+            ListCell<Warning> cell = new ListCell<Warning>(){
+                @Override
+                protected void updateItem(Warning item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty || item == null || item.getComplaint() == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getComplaint().getId() + "");
+                    }
+                }
+            };
             cell.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!cell.isEmpty())) {
                     Warning warning = cell.getItem();
                     new Alert(Alert.AlertType.INFORMATION,warning.getComplaint().getDetails()).show();
                 }
             });
+
             return cell;
         });
 
         myOrders.setCellFactory(param -> {
-            ListCell<Order> cell = new ListCell<Order>();
+            ListCell<Order> cell = new ListCell<Order>(){
+                @Override
+                protected void updateItem(Order item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getId() + "");
+                    }
+                }
+            };
             cell.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!cell.isEmpty())) {
                     Order order = cell.getItem();
@@ -34,7 +59,18 @@ public class MyProfileView {
         });
 
         myCommands.setCellFactory(param -> {
-            ListCell<Order> cell = new ListCell<Order>();
+            ListCell<Order> cell = new ListCell<Order>(){
+                @Override
+                protected void updateItem(Order item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getId() + "");
+                    }
+                }
+            };
             cell.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!cell.isEmpty())) {
                     Order order = cell.getItem();

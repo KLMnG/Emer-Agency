@@ -35,7 +35,7 @@ public class Complaint {
             this.Id = ++IdGenerator;
             accuser.addComplaint(this);
             complainant.addToAccuserList(this);
-            this.status="In Progress";
+            this.status="PENDING";
         }
         else {
             throw new Exception("complainant and accuser cant be the same one");

@@ -9,7 +9,6 @@ public class User {
     private List<Order> ordersRecieved;
     private List<Order> ordersDelivered;
     private Department department;
-    private List<Warning> warnings;
     private List<Complaint> complaintsRecieved;
     private List<Complaint> complaintsSent;
     private UserController userController;
@@ -56,7 +55,7 @@ public class User {
     }
 
     public void addWarning(Warning warning) {
-        this.warnings.add(warning);
+        this.warningList.add(warning);
     }
 
     public void addComplaint(Complaint complaint) {

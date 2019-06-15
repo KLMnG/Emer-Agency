@@ -92,9 +92,11 @@ public class ViewController {
     }
     public void approveComplaint(Complaint compliant) {
         this.complaintController.approvedByAdmin(compliant,((Admin)this.currentUser),compliant.getComplainant());
+        this.complaintManagerView.updateComplaintsDetails();
     }
 
     public void denyComplaint(Complaint compliant) {
         this.complaintController.deniedByAdmin(compliant,((Admin)this.currentUser),compliant.getComplainant());
+        this.complaintManagerView.updateComplaintsDetails();
     }
 }

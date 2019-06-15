@@ -20,4 +20,8 @@ public class Admin extends User {
     public ArrayList<Complaint> getComplaintsToReview() {
         return ComplaintsToReview;
     }
+
+    public void removeFromList(Complaint c) {
+        ComplaintsToReview.remove(c);
+    }
 }

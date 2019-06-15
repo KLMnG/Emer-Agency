@@ -3,11 +3,6 @@ import java.util.List;
 
 public class ComplaintController {
 
-    public String status;
-    public String details;
-    public User complainant;
-    public Warning warning;
-    public User accuser;
     public Admin approver;
     public ArrayList<Complaint> complaintList;
     public ArrayList<User> userList;
@@ -23,19 +18,19 @@ public class ComplaintController {
     }
 
     public void approvedByAdmin(Complaint c, Admin approver, User complainant){
-        approver.approve(c);
-        manageAComplaint(c,complainant,"APPROVE");
+        approver.removeFromList(c);
+        manageAComplaint(c,complainant,"APPROVED");
     }
 
     public void deniedByAdmin(Complaint c, Admin approver, User complainant){
-        approver.approve(c);
+        approver.removeFromList(c);
         manageAComplaint(c,complainant,"DENIED");
     }
 
 
     public void manageAComplaint(Complaint c, User complainant,String Status){
         c.setStatus(Status);
-        if (status.equals("APPRVE")) {
+        if (Status.equals("APPROVED")) {
             c.createAndSendWarning(complainant);
         }
     }
