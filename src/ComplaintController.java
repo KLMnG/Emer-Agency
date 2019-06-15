@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class ComplaintController {
 
@@ -21,24 +22,36 @@ public class ComplaintController {
 
     public void approvedByAdmin(Complaint c, Admin approver, User complainant){
         approver.approve(c);
-        manageAComplaint(c,complainant);
+        manageAComplaint(c,complainant,"APPROVE");
+    }
+
+    public void deniedByAdmin(Complaint c, Admin approver, User complainant){
+        approver.approve(c);
+        manageAComplaint(c,complainant,"DENIED");
     }
 
 
-    public void manageAComplaint(Complaint c, User complainant){
-        c.setStatus("APPROVE");
-        c.createAndSendWarning(complainant);
-        complaintList.add(c);
+    public void manageAComplaint(Complaint c, User complainant,String Status){
+        c.setStatus(Status);
+        if (status.equals("APPRVE")) {
+            c.createAndSendWarning(complainant);
+        }
     }
 
     public void makeNewComplaint(User complainant, User accuser, String details) throws Exception {
         Complaint c = new Complaint(complainant,accuser,details);
         //c.setStatus("In Progress");
+        complaintList.add(c);
         Model.getInstance().createComplaint(c);
-       // ArrayList <Admin>approvers = getAdmins();
-        //for (Admin a:approvers) {
-         //   sendToAdmin(c,a);
+        List<User> approvers = Model.getInstance().getUsers();
+        for (User u : approvers) {
+            if (u instanceof Admin) {
+                Admin admin = (Admin) u;
+                if (complainant.getDepartment().getId() == admin.getDepartment().getId())
+                    sendToAdmin(c, admin);
+            }
         }
+    }
 
 
     public void sendToAdmin(Complaint c, Admin approver){

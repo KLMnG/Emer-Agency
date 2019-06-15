@@ -3,7 +3,7 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 public class Complaint {
 
 
-    private static int IdGenerator = 0;
+    private static int IdGenerator = Model.getInstance().getMaxCompliantId();
     private int Id;
     private String status;
     private String details;
@@ -53,7 +53,7 @@ public class Complaint {
     }
 
     public void setStatus(String status) {
-        Model.getInstance().UpdateComplaintStatus(this,status);
+        Model.getInstance().updateComplaintStatus(this,status);
     }
 
     public User getAccuser() {

@@ -58,7 +58,6 @@ public class ViewController {
         }
     }
 
-
     public void getUsers() {
         List<User> users = userController.getOrderRelevantUsers();
         view.setRelevantUsersOrderTable(users);
@@ -90,6 +89,12 @@ public class ViewController {
         catch (Exception e){
             this.view.showError("PLEASE CHOOSE A USER");
         }
+    }
+    public void approveComplaint(Complaint compliant) {
+        this.complaintController.approvedByAdmin(compliant,((Admin)this.currentUser),compliant.getComplainant());
+    }
 
+    public void denyComplaint(Complaint compliant) {
+        this.complaintController.deniedByAdmin(compliant,((Admin)this.currentUser),compliant.getComplainant());
     }
 }

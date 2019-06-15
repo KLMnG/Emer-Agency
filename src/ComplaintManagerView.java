@@ -49,9 +49,11 @@ public class ComplaintManagerView {
     }
 
     public void ApproveComplaint(ActionEvent actionEvent) {
+        this.viewController.approveComplaint((Complaint)tvComplaint.getSelectionModel().getSelectedItem());
     }
 
     public void DenyComplaint(ActionEvent actionEvent) {
+        this.viewController.denyComplaint((Complaint)tvComplaint.getSelectionModel().getSelectedItem());
     }
 
     public void Back(ActionEvent actionEvent) {

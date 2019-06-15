@@ -37,16 +37,22 @@ public class Model {
         for (User user : users) {
             this.updateUserComplaints(user);
             this.updateUserOrders(user);
-
         }
         for (User user : users) {
             for (Complaint complaint : complaints) {
                 this.updateUserWarnings(user, complaint);
+                if (user instanceof Admin && complaint.getComplainant().getDepartment().getId() == user.getDepartment().getId()) {
+                    Admin admin = (Admin)user;
+                    admin.addToComplaintsList(complaint);;
+                }
             }
         }
         for (Order order : orders) {
             this.UpdateOrdersUser(order);
         }
+    }
+
+    private void updateAdminReviewComplaint(Admin user) {
     }
 
     public List<User> getUsers() {
@@ -163,6 +169,7 @@ public class Model {
         try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, u.getId());
+            pstmt.setInt(2, complaint.getId());
             ResultSet rs = pstmt.executeQuery();
 
             List<Warning> tmp = new ArrayList<>();
@@ -262,7 +269,7 @@ public class Model {
         }
     }
 
-    public void UpdateComplaintStatus(Complaint c, String status) {
+    public void updateComplaintStatus(Complaint c, String status) {
         String sql = "UPDATE UsersComplaints SET Status = ? WHERE Id = ?";
 
 

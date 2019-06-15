@@ -1,9 +1,10 @@
+import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
 
-    private static int IdGenerator = 0;
+    private static int IdGenerator = Model.getInstance().getMaxOrderId();
 
     private String details;
     private User ordering;
