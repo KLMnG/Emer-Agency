@@ -14,7 +14,7 @@ public class Admin extends User {
     }
 
     public void approve(Complaint c) {
-
+        
     }
 
     public ArrayList<Complaint> getComplaintsToReview() {
