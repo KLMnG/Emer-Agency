@@ -15,6 +15,7 @@ public class ComplaintController {
 
 
     public ComplaintController(){
+        Complaint.setIdGenerator();
 //        for (User u :userList) {
 //            userList.add(u);
 //        }
