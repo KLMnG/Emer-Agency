@@ -50,7 +50,6 @@ public class Model {
     }
 
     public List<User> getUsers() {
-        updateUsers();
         return users;
     }
 
