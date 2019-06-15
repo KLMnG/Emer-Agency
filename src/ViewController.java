@@ -8,17 +8,21 @@ public class ViewController {
     private UserController userController;
     private View view;
     private MyProfileView myProfileView;
+    private ComplaintManagerView complaintManagerView;
     private User currentUser;
     private Stage primaryStage;
     private Scene mainScene;
     private Scene myProfileScene;
+    private Scene complaintManagerScene;
 
-    public ViewController(View v,MyProfileView myProfileView, Stage primaryStage,Scene mainScene,Scene myProfileScene) {
+    public ViewController(View v, MyProfileView myProfileView, ComplaintManagerView complaintManagerView, Stage primaryStage, Scene mainScene, Scene myProfileScene, Scene complaintManagerScene) {
         this.view = v;
         this.myProfileView = myProfileView;
+        this.complaintManagerView = complaintManagerView;
         this.primaryStage = primaryStage;
         this.mainScene = mainScene;
         this.myProfileScene = myProfileScene;
+        this.complaintManagerScene = complaintManagerScene;
     }
 
 
@@ -81,6 +85,10 @@ public class ViewController {
         }
         catch (Exception e){
             this.view.showError("PLEASE CHOOSE A USER");
+        }
+        else if (name.equals("CompliantManager")) {
+            this.primaryStage.setScene(complaintManagerScene);
+            this.complaintManagerView.updateComplaintsDetails();
         }
     }
 }

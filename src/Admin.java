@@ -8,7 +8,6 @@ public class Admin extends User {
         super(rank, id, name);
     }
 
-
     public void addToComplaintsList(Complaint c) {
         ComplaintsToReview.add(c);
     }
@@ -17,4 +16,7 @@ public class Admin extends User {
 
     }
 
+    public ArrayList<Complaint> getComplaintsToReview() {
+        return ComplaintsToReview;
+    }
 }

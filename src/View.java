@@ -1,4 +1,5 @@
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +13,10 @@ import java.util.List;
 
 public class View {
 
+    public MenuItem myProfileMenu;
+    public MenuItem complaintManagerMenu;
     private ViewController viewController;
+    private SimpleBooleanProperty isAdminProperty;
 
     public Button btnConnect;
     public Button btnGiveOrder;
@@ -40,9 +44,15 @@ public class View {
 
         initializeUserNames();
         initializeUserToAction();
+        this.isAdminProperty = new SimpleBooleanProperty(false);
+
+        myProfileMenu.visibleProperty().bind(isAdminProperty.not());
+        complaintManagerMenu.visibleProperty().bind(isAdminProperty);
+
     }
 
     private void initializeUserNames() {
+
         this.users = FXCollections.observableArrayList();
         tvUsersToAction.setRowFactory(param -> {
             TableRow<User> row = new TableRow<User>();
@@ -85,6 +95,7 @@ public class View {
             });
             return row;
         });
+
         colUserName.setCellValueFactory(
                 new PropertyValueFactory<User, String>("Name")
         );
@@ -99,8 +110,8 @@ public class View {
 
 
         this.tvUsersToAction.setItems(usersToAction);
-    }
 
+    }
 
     public ObservableList<User> getUsersToAction() {
         return this.usersToAction;
@@ -118,6 +129,7 @@ public class View {
     public void connectUser(javafx.event.ActionEvent actionEvent) {
         try {
             this.viewController.connectUser(((User) this.tvUsersNames.getSelectionModel().getSelectedItem()));
+            isAdminProperty.setValue(this.viewController.getCurrentUser() instanceof Admin);
         } catch (Exception e) {
             showError("PLEASE CHOOSE A USER");
         }
@@ -168,6 +180,10 @@ public class View {
 
     public void enterMyProfile() {
         this.viewController.setView("myProfile");
+    }
+
+    public void enterComplaintManager(ActionEvent actionEvent) {
+        this.viewController.setView("CompliantManager");
     }
 }
 

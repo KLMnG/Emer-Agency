@@ -24,10 +24,15 @@ public class EmerAgency extends Application {
         Parent profileRoot = loader.load(getClass().getResource("MyProfile.fxml").openStream());
         MyProfileView myProfileView = loader.getController();
 
+        loader = new FXMLLoader();
+        Parent complaintManagerRoot = loader.load(getClass().getResource("ComplaintManager.fxml").openStream());
+        ComplaintManagerView complaintManagerView = loader.getController();
+
         Scene mainScene = new Scene(mainRoot,800,700);
         Scene profileScene = new Scene(profileRoot,800,700);
+        Scene complaintManagerScene = new Scene(complaintManagerRoot,800,700);
 
-        ViewController viewController = new ViewController(view,myProfileView,primaryStage,mainScene,profileScene);
+        ViewController viewController = new ViewController(view,myProfileView,complaintManagerView,primaryStage,mainScene,profileScene,complaintManagerScene);
         ComplaintController complaintController = new ComplaintController();
         UserController userController = new UserController();
 
@@ -36,6 +41,7 @@ public class EmerAgency extends Application {
 
         view.setViewController(viewController);
         myProfileView.setViewController(viewController);
+        complaintManagerView.setViewController(viewController);
 
         viewController.setView("Main");
         primaryStage.show();
