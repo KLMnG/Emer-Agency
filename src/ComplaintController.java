@@ -15,6 +15,7 @@ public class ComplaintController {
 
 
     public ComplaintController(){
+        Complaint.setIdGenerator();
 //        for (User u :userList) {
 //            userList.add(u);
 //        }
@@ -39,8 +40,8 @@ public class ComplaintController {
     }
 
     public void makeNewComplaint(User complainant, User accuser, String details) throws Exception {
-        Complaint c = new Complaint(complainant, accuser, details);
-        c.setStatus("In Progress");
+        Complaint c = new Complaint(complainant,accuser,details);
+        //c.setStatus("In Progress");
         complaintList.add(c);
         Model.getInstance().createComplaint(c);
         List<User> approvers = Model.getInstance().getUsers();

@@ -28,6 +28,8 @@ public class User {
         this.accusersList = new ArrayList<>();
         this.ordersDelivered = new ArrayList<>();
         this.ordersRecieved = new ArrayList<>();
+        this.complaintsSent=new ArrayList<>();
+        this.complaintsRecieved=new ArrayList<>();
     }
 
     public void assignDepartment(Department d){
