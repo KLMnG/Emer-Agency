@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyProfileView">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ListView fx:id="myWarnings" layoutX="15.0" layoutY="50.0" prefHeight="325.0" prefWidth="175.0" />
+            <Label layoutX="67.0" layoutY="29.0" text="My Warnings" />
+            <ListView fx:id="myOrders" layoutX="210.0" layoutY="50.0" prefHeight="325.0" prefWidth="175.0" />
+            <Label layoutX="262.0" layoutY="29.0" text="My Orders" />
+            <ListView fx:id="myCommands" layoutX="410.0" layoutY="50.0" prefHeight="325.0" prefWidth="175.0" />
+            <Label layoutX="457.0" layoutY="29.0" text="My Commands" />
+            <Button layoutX="280.0" layoutY="374.0" mnemonicParsing="false" text="Back" onAction="#Back"/>
+         </children></Pane>
+
+   </children>
+</AnchorPane>

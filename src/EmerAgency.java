@@ -16,21 +16,28 @@ public class EmerAgency extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-
-
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("EmerAgencyFXML.fxml").openStream());
+        Parent mainRoot = loader.load(getClass().getResource("EmerAgencyFXML.fxml").openStream());
         View view = loader.getController();
-        ViewController viewController = new ViewController(view);
+
+        loader = new FXMLLoader();
+        Parent profileRoot = loader.load(getClass().getResource("MyProfile.fxml").openStream());
+        MyProfileView myProfileView = loader.getController();
+
+        Scene mainScene = new Scene(mainRoot,800,700);
+        Scene profileScene = new Scene(profileRoot,800,700);
+
+        ViewController viewController = new ViewController(view,myProfileView,primaryStage,mainScene,profileScene);
         ComplaintController complaintController = new ComplaintController();
         UserController userController = new UserController();
+
         viewController.addComplaitController(complaintController);
         viewController.addUserController(userController);
+
         view.setViewController(viewController);
+        myProfileView.setViewController(viewController);
 
-
-        Scene scene = new Scene(root,800,700);
-        primaryStage.setScene(scene);
+        viewController.setView("Main");
         primaryStage.show();
     }
 }

@@ -1,13 +1,24 @@
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.List;
 
 public class ViewController {
     private ComplaintController complaintController;
     private UserController userController;
     private View view;
+    private MyProfileView myProfileView;
     private User currentUser;
+    private Stage primaryStage;
+    private Scene mainScene;
+    private Scene myProfileScene;
 
-    public ViewController(View v) {
+    public ViewController(View v,MyProfileView myProfileView, Stage primaryStage,Scene mainScene,Scene myProfileScene) {
         this.view = v;
+        this.myProfileView = myProfileView;
+        this.primaryStage = primaryStage;
+        this.mainScene = mainScene;
+        this.myProfileScene = myProfileScene;
     }
 
 
@@ -54,5 +65,16 @@ public class ViewController {
         this.view.setLbUserNameText(user.getName());
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
+    public void setView(String name){
+        if (name.equals("Main"))
+            this.primaryStage.setScene(mainScene);
+        else if (name.equals("myProfile")) {
+            this.primaryStage.setScene(myProfileScene);
+            this.myProfileView.updateUserDetails();
+        }
+    }
 }

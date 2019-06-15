@@ -2,13 +2,15 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 public class View {
-
 
     private ViewController viewController;
 
@@ -33,9 +35,8 @@ public class View {
 
     private ObservableList<User> users;
     private ObservableList<User> usersToAction;
+    public void initialize(){
 
-
-    public void initialize() {
         this.users = FXCollections.observableArrayList();
         this.usersToAction = FXCollections.observableArrayList();
         // col_from.setEditable(false);
@@ -62,7 +63,6 @@ public class View {
             });
             return row;
         });
-
 
         colUserName.setCellValueFactory(
                 new PropertyValueFactory<User, String>("Name")
@@ -156,6 +156,10 @@ public class View {
 
     public void enterComplaint(ActionEvent actionEvent) {
         this.viewController.enterComplaint();
+    }
+
+    public void enterMyProfile(){
+        this.viewController.setView("myProfile");
     }
 }
 

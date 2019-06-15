@@ -14,15 +14,20 @@ public class User {
     private List<Complaint> complaintsSent;
     private UserController userController;
     private ComplaintController complaintController;
-    public ArrayList<Warning>warningList;
-    public ArrayList<Complaint>complaintsList;
-    public ArrayList<Complaint>accusersList;
+    private ArrayList<Warning>warningList;
+    private ArrayList<Complaint>complaintsList;
+    private ArrayList<Complaint>accusersList;
 
 
     public User(int id,int rank, String name) {
         this.rank = rank;
         this.Id = id;
         this.name = name;
+        this.warningList = new ArrayList<>();
+        this.complaintsList = new ArrayList<>();
+        this.accusersList = new ArrayList<>();
+        this.ordersDelivered = new ArrayList<>();
+        this.ordersRecieved = new ArrayList<>();
     }
 
     public void assignDepartment(Department d){
@@ -81,5 +86,17 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public List<Order> getOrdersRecieved() {
+        return ordersRecieved;
+    }
+
+    public List<Order> getOrdersDelivered() {
+        return ordersDelivered;
+    }
+
+    public ArrayList<Warning> getWarningList() {
+        return warningList;
     }
 }
