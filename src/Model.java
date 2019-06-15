@@ -37,6 +37,7 @@ public class Model {
         for (User user : users) {
             this.updateUserComplaints(user);
             this.updateUserOrders(user);
+
         }
         for (User user : users) {
             for (Complaint complaint : complaints) {
@@ -169,7 +170,7 @@ public class Model {
         try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, u.getId());
-            pstmt.setInt(2, complaint.getId());
+            pstmt.setInt(2,complaint.getId() );
             ResultSet rs = pstmt.executeQuery();
 
             List<Warning> tmp = new ArrayList<>();
@@ -366,7 +367,7 @@ public class Model {
     }
 
     public int getMaxOrderId() {
-        String sql = "SELECT max(Id) as MaxId FROM Oders";
+        String sql = "SELECT max(Id) as MaxId FROM Orders";
 
         int Id = 0;
         try (Connection conn = DBConnection.getInstance().getSQLLiteDBConnection();
