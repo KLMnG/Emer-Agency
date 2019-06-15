@@ -33,7 +33,7 @@ public class ComplaintController {
 
     public void makeNewComplaint(User complainant, User accuser, String details) throws Exception {
         Complaint c = new Complaint(complainant,accuser,details);
-        c.setStatus("In Progress");
+        //c.setStatus("In Progress");
         Model.getInstance().createComplaint(c);
        // ArrayList <Admin>approvers = getAdmins();
         //for (Admin a:approvers) {
